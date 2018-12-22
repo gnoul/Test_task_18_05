@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Mustbe</th>
+            <th scope="col">Arrive</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for part in parts_list %}
+            <tr {% if part.mustbe > part.count %}class="bg-danger"{% endif %}>
+                <td>{{ part.name }}</td>
+                <td>{{ part.count }}</td>
+                <td>{{ part.mustbe }}</td>
+                <td>{{ part.arrive }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

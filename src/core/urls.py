@@ -16,6 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from sparse.views import IndexView, PartsView, missing_parts
+
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='index'),
+    # url(r'^parts/', get_parts, name='parts'),
+    url(r'^parts/', PartsView.as_view(), name='parts'),
+    url(r'^missing_parts/', missing_parts, name='missing_parts'),
     url(r'^admin/', admin.site.urls),
 ]
