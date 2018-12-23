@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from sparse.views import IndexView, PartsView, missing_parts
+from spare.views import IndexView, PartsView, missing_parts
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),

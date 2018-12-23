@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('count', models.PositiveIntegerField(default=0)),
                 ('mustbe', models.PositiveIntegerField(default=0)),
                 ('arrive', models.PositiveIntegerField(default=0)),
-                ('alternatives', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='parts', to='sparse.Alternatives')),
+                ('alternatives', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='parts', to='spare.Alternatives')),
             ],
         ),
     ]

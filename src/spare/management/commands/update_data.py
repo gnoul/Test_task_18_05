@@ -4,7 +4,7 @@ from requests.exceptions import RequestException
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-from sparse.models import Parts, Alternatives
+from spare.models import Parts, Alternatives
 
 
 class Command(BaseCommand):
