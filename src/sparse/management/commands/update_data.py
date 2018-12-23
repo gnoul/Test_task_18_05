@@ -5,16 +5,21 @@ from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
 from sparse.models import Parts, Alternatives
+
+
 class Command(BaseCommand):
     help = "Update sparse parts in database"
 
     def add_arguments(self, parser):
-        parser.add_argument('clean', action='store_true', help='Delete all records from database')
+        parser.add_argument('--clean', action='store_true', help='Delete all records from database')
 
     def handle(self, *args, **options):
         parts = self.get_data('PARTS_URL')
         alternatives = self.get_data('PARTS_ALTERNATIVES')['alternatives']
-        # self.update_parts(parts, alternatives)
+        make_clean = options.get('clean')
+        if make_clean:
+            Parts.objects.all().delete()
+            Alternatives.objects.all().delete()
         self.update_parts(parts)
         self.update_alternatives(alternatives)
 
@@ -36,21 +41,6 @@ class Command(BaseCommand):
             for part_name in part_names:
                 part, _ = Parts.objects.get_or_create(name=part_name)
                 alt.parts.add(part)
-
-
-
-    # @staticmethod
-    # def update_parts(parts, alternatives):
-    #     for name, details in alternatives.items():
-    #         result = {'count': 0, 'mustbe': 0, 'arrive': 0}
-    #         for detail in details:
-    #             parts_data = parts.pop(detail, None)
-    #             if parts_data:
-    #                 result['count'] += parts_data['count']
-    #                 result['arrive'] += parts_data['arrive']
-    #                 if parts_data['mustbe'] > result['count']:
-    #                     result['count'] = parts_data['mustbe']
-    #         parts[name] = result
 
     @staticmethod
     def get_data(param):
