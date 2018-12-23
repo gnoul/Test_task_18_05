@@ -5,4 +5,5 @@ __pycache__/
 
 .idea
 src/core/local_settings.py
+src/db.sqlite3
 
